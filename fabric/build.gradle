@@ -1,0 +1,30 @@
+plugins {
+    id "net.fabricmc.fabric-loom" version "1.17.21"
+}
+
+base {
+    archivesName = "el-pack-manager-fabric"
+}
+
+dependencies {
+    minecraft "com.mojang:minecraft:$minecraft_version"
+    mappings loom.officialMojangMappings()
+    modImplementation "net.fabricmc:fabric-loader:$fabric_loader_version"
+    modImplementation "net.fabricmc.fabric-api:fabric-api:$fabric_api_version"
+}
+
+sourceSets.main.java.srcDir project(":common").sourceSets.main.java
+
+processResources {
+    inputs.property "version", project.version
+
+    filesMatching("fabric.mod.json") {
+        expand(
+            version: project.version,
+            mod_id: mod_id,
+            mod_name: mod_name,
+            minecraft_version: minecraft_version,
+            fabric_loader_version: fabric_loader_version
+        )
+    }
+}
