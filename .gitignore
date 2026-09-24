@@ -1,0 +1,32 @@
+# Gradle
+.gradle/
+build/
+!gradle/wrapper/gradle-wrapper.jar
+
+# IDE
+.idea/
+*.iml
+.vscode/
+.project
+.classpath
+.settings/
+
+# Minecraft development runs
+runs/
+**/run/
+**/logs/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Local files
+local.properties
+
+# Generated artifacts
+*.jar
+*.zip
+
+# Keep the planned archive structure visible
+!jars/
+!jars/**/
