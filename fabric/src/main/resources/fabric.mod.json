@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "id": "$mod_id",
+  "version": "$version",
+  "name": "$mod_name",
+  "description": "Manage, customize, and switch Minecraft packs without leaving the game.",
+  "authors": [
+    "eLBano12"
+  ],
+  "environment": "client",
+  "entrypoints": {
+    "client": [
+      "com.elbano12.elpackmanager.fabric.ElPackManagerFabric"
+    ]
+  },
+  "depends": {
+    "fabricloader": ">=$fabric_loader_version",
+    "minecraft": "$minecraft_version",
+    "fabric-api": "*"
+  }
+}
