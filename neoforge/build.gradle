@@ -1,0 +1,46 @@
+plugins {
+    id "java-library"
+    id "net.neoforged.moddev" version "2.0.147"
+}
+
+base {
+    archivesName = "el-pack-manager-neoforge"
+}
+
+java.toolchain.languageVersion = JavaLanguageVersion.of(25)
+
+neoForge {
+    version = project.neoforge_version
+
+    runs {
+        client {
+            client()
+        }
+    }
+
+    mods {
+        "$mod_id" {
+            sourceSet(sourceSets.main)
+        }
+    }
+}
+
+sourceSets.main.java.srcDir project(":common").sourceSets.main.java
+
+def generateModMetadata = tasks.register("generateModMetadata", ProcessResources) {
+    def replaceProperties = [
+        minecraft_version: minecraft_version,
+        mod_version: mod_version,
+        mod_id: mod_id,
+        mod_name: mod_name,
+        neoforge_version: neoforge_version
+    ]
+
+    inputs.properties replaceProperties
+    expand replaceProperties
+    from "src/main/templates"
+    into "build/generated/sources/modMetadata"
+}
+
+sourceSets.main.resources.srcDir generateModMetadata
+neoForge.ideSyncTask generateModMetadata
